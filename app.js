@@ -16,30 +16,40 @@ io.on('connection', () => {
 
 
 
-let rooms = [];
-rooms[0] = null;
+
+let bn={
+    rooms: {}
+} ;
 io.sockets.on('connection', (socket) => {
     let isAddToRoom = false;
-    // Parcrour des room pour attributionz
-    for (let i = 0; i < bn.rooms.length; i++) {
-        const room = bn.rooms[i];
+let rooml = Object.keys(bn.rooms);
+   console.log("nombre de rooms : " + rooml.length);
 
-        // s'il reste une place dans la room
-        if (room.length < 3) {
-            // on ajoute le player
-            room.player2 = socket;
-            // on join la room
-            socket.join(room.roomid);
-            // on notifi
-            socket.in(room.roomid).emit('newPlayer', 'Nouveau joueur');
-            isAddToRoom = true
-        }
+    // Parcour des room pour attributionz
+    for (let i = 0; i < rooml.length; i++) {
+        console.log("nombre de rooms : " + rooml.length);
+        console.log("entrée dans le for");
+        const room = bn.rooms[i];
+let rl = Object.keys(room);
+         if (rl.length < 3) {
+            console.log("entrée dans le if");
+        //     // on ajoute le player
+        room.player2 = socket;
+        console.log(room.player2);
+        //     // on join la room
+             socket.join(room.roomid);
+        //     // on notifi
+             socket.in(room.roomid).emit('newPlayer', 'Nouveau joueur');
+             isAddToRoom = true
+                    // console.log(rooms);
+         }
     }
+
     // sinon on creer une room
     if (!isAddToRoom) {
-        bn.rooms[bn.room.length] = { "roomid": bn.room.length, "player1": socket };
-        socket.join(room.roomid);
-        socket.in(room.roomid).emit('newPlayer', 'Nouveau joueur');
+        bn.rooms[rooml.length] = { "roomid": rooml.length, "player1": socket };
+        socket.join(rooml.length);
+        socket.in(rooml.length).emit('newPlayer', 'Nouveau joueur');
     }
 
     // Cette fonction permet au joueur de se renomer et prevenir les joueurs adverses;
@@ -49,4 +59,10 @@ io.sockets.on('connection', (socket) => {
     });
 
 
+    socket.on('validation_position', (Coords) => {
+
+    });
+
 })
+
+

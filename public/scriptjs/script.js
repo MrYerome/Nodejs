@@ -31,9 +31,7 @@ let songNewMsg = new Audio('song/Bomb-SoundBible.mp3');;
     // Validation de la position des bateaux
     $('#validation_position').on('click', function () { 
         console.log("validation des positions");
-        socket.on('validation_position', function(data) {
-            insereMessage(data.pseudo, data.message)
-        })
+        socket.emit('validation_position', myNav)
     })
 
     socket.on('connectionEstablished', (message) => {
