@@ -23,9 +23,24 @@ td:hover{
 .gridContainer{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .nav{
     background-color: var(--bgd-navire);
+}
+
+.chat {
+    width:15%;
+    color: black;
+    /* background-color: greenyellow; */
+    padding: 2px;
+}
+
+#message{
+width:100%;
+}
+
+.disabled{
+    disabled:true;
 }

@@ -10,10 +10,23 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 
 <body>
+
     <div class="gridContainer">
+
+            <div class="chat">
+                    <form action="/" method="post" id="formulaire_chat">
+                        <input type="text" name="message" id="message" placeholder="Votre message..." autofocus />
+                        <input  type="submit" id="envoi_message" value="Envoyer" />
+                    </form>
+            
+                    <section id="zone_chat">
+                        
+                    </section>
+                </div>
 
         <div class="grid">
 
@@ -118,6 +131,8 @@
                     <td id="I9"></td>
                 </tr>
             </table>
+<p><span id="nb_bato_restant"></span> bateaux restants à placer</p>
+            <button id="validation_position" disabled>Valider vos positions</button>
         </div>
         <div class="grid">
             <table id="he">
@@ -223,31 +238,8 @@
             </table>
         </div>
     </div>
-
+    <script src="scriptjs/script.js"></script>
 </body>
-<script>
-    var limit = 15;
-    var myNav = [];
-    // Positionnement navire
-    $('#me td').on('click', function () {
-        if (myNav.includes(this.id)) {
-            myNav = myNav.filter(n => n != this.id);
-        } else {
-            myNav.push(this.id);
-        }
-        console.log(myNav);
-        $(this).toggleClass('nav');
-    })
 
-
-    var socket = io.connect('http://localhost:8888');
-    var pseudo,
-        songNewMsg = new Audio('song/Bomb-SoundBible.mp3');;
-
-    socket.on('connectionEstablished', (message) => {
-        setPseudo();
-    })
-
-</script>
 
 </html>
