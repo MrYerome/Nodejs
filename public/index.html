@@ -231,13 +231,12 @@
     // Positionnement navire
     $('#me td').on('click', function () {
         if (myNav.includes(this.id)) {
-            myNav = myNav.filter(n => n != this.id)
+            myNav = myNav.filter(n => n != this.id);
         } else {
-            myNav.push(this.id)
-            $(this).toggleClass('nav')
+            myNav.push(this.id);
         }
         console.log(myNav);
-
+        $(this).toggleClass('nav');
     })
 
 

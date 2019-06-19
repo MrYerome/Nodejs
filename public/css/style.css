@@ -25,3 +25,7 @@ td:hover{
     flex-direction: row;
     justify-content: space-around;
 }
+
+.nav{
+    background-color: var(--bgd-navire);
+}
