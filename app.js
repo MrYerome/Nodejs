@@ -1,29 +1,16 @@
-const app = require('express')();
-const server = require('http').createServer(app);
-   const io = require('socket.io').listen(server);
- const   ent = require('ent'); // Permet de bloquer les caractères HTML (sécurité équivalente à htmlentities en PHP)
+var express = require('express');
+var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
-app.get('/', function (request, response) {
-  response.sendfile(__dirname + '/index.html');
-})
-.use(function(req, res, next){
+server.listen(8888);
+app.use(express.static(__dirname + '/public')).get('/', function (req, res) {
+
     res.setHeader('Content-Type', 'text/plain');
-    res.status(404).send("PAge introuvable");
+    res.render("index.html");
 });
 
-io.sockets.on('connection', function (socket, pseudo) {
-    socket.on('nouveau_client', function(pseudo) {
-        pseudo = ent.encode(pseudo);
-        socket.pseudo = pseudo;
-        socket.broadcast.emit('nouveau_client', pseudo);
-    });
+io.on('connection', () => {
+    console.log("Nouvelle connection Utilisateur");
+})
 
-    socket.on('message', function (message) {
-        message = ent.encode(message);
-        socket.broadcast.emit('message', {pseudo: socket.pseudo, message: message});
-    }); 
-});
-
-
-
-server.listen(4100);  

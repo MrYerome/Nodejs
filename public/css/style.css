@@ -1,0 +1,27 @@
+:root{
+    --bgd-hover : rgba(0, 0, 0, 0.2);
+    --bgd-touch : green;
+    --bgd-miss : blue;
+    --bgd-navire : gray;
+    --bgd-naviretouch : red; 
+}
+
+table{
+    border-collapse: collapse;
+}
+td{
+    width: 50px;
+    height: 50px;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+
+td:hover{
+    background-color: var(--bgd-hover);
+}
+
+.gridContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
