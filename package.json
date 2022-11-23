@@ -4,7 +4,7 @@
     "dependencies": {
         "express": "^4.17.1",
         "pm2": "^2.9.2-next",
-        "socket.io": "^2.2.0"
+        "socket.io": "^2.5.0"
     },
     "author": "Christopher / Jerome",
     "description": "Une bataille navale en socket.io"
